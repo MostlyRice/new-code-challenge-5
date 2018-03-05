@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Gacrux Weekend 5 live solve</title>
-    <script src="/vendors/angular.min.js"></script>
-    <script src="/vendors/angular-route.min.js"></script>
-    <script src="/scripts/client.js"></script>
-  </head>
-  <body>
-    <h1>SWAPI Search</h1>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Gacrux Weekend 5 live solve</title>
+  <script src="/vendors/angular.min.js"></script>
+  <script src="/vendors/angular-route.min.js"></script>
+  <script src="/scripts/client.js"></script>
+</head>
+<body>
+  <h1>Message Board Application</h1>
+  <div ng-controller="ChatController as cc">
+    <section>
+      <input type="text" placeholder="name" ng-model="cc.newMessage.name">
+      <input type="text" placeholder="message" ng-model="cc.newMessage.message">
+      <button ng-click="cc.submitButton(cc.newMessage)">Send!</button>
+    </section>
+  </div>
+  <article>
+    <ul>
+      <div ng-repeat="message in mc.messages.allMessages">
+        <b>{{message.name}}</b>: {{message.message}}
+    </div>
+    </ul>
+  </article>
+</body>
 </html>
