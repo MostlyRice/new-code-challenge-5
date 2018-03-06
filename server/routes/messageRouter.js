@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const messageSchema = new mongoose.Schema(
+    
     {
         name: {type: String},
         message: {type: String}
