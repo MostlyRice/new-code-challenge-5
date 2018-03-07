@@ -8,7 +8,6 @@ app.use(bodyParser.json()); // needed for angular requests
 
 // Mongoose setup ------------------------------------
 const mongoose = require('mongoose');
-
 const databaseUrl = 'mongodb://localhost:27017/ccfive_james';
 
 mongoose.connection.on('connected', function() {
@@ -24,7 +23,7 @@ mongoose.connect(databaseUrl);
 
 //Router
 const messageRouter = require('./routes/messageRouter');
-app.use('/ccfive_james', messageRouter);
+app.use('/message', messageRouter);
 
 
 //Start up the server

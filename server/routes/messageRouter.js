@@ -1,41 +1,38 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const messageSchema = new mongoose.Schema(
-    
-    {
-        name: {type: String},
-        message: {type: String}
+
+const ChatSchema = new mongoose.Schema(
+{
+  name: {type: String, required: true},
+  message: {type: String, required: true}
+});//end ChatSchema
+
+const Chat = mongoose.model('Chat', ChatSchema, 'ccfive_james' )
+
+router.post('/', (request, response)=>{
+  let newChat = new Chat (request.body);
+  console.log('chat to add', newChat);
+  newChat.save((error, addedChat)=>{
+    if(error){
+      console.log('error in posting chat', error);
+      response.sendStatus(500);
+    }else{
+      response.sendStatus(201);
     }
-)
+  })
+})//end post chat
 
-const message = mongoose.model('message', messageSchema, 'messages');
-
-router.post('/', function(request, response){
-    let newMessage = new message(request.body);
-    console.log('Message to save is:', request.body);
-    newMessage.save(function(error, savedMessage){
-        if (error){
-            console.log('error on saving message:', error);
-            response.sendStatus(500);
-        }
-        else{
-            response.sendStatus(200);
-        }
-    })
-});
-
-router.get('/', function(request, response){
-    message.find({}, function(error, messages){ 
-        if(error){
-            console.log('error on getting all messages', error);
-            response.sendStatus(500);
-        }
-        else{
-            response.send(messages);
-        }
-    })
-});
+router.get('/', (request, response)=>{
+  Chat.find({}, (error, foundChats)=>{
+    if(error){
+      console.log('error in find chat', error);
+      response.sendStatus(500);
+    }else{
+      console.log('in get', foundChats);
+      response.send(foundChats);
+    }
+  })
+})//end GET chat
 
 module.exports = router;

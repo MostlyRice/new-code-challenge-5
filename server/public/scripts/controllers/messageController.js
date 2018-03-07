@@ -1,5 +1,5 @@
 
-const CC5Controller = app.controller('messageController', ['messageService', function(messageService){
+const chatController = app.controller('chatController', ['messageService', function(messageService){
     let self = this;
     self.chat = messageService.chat;
     self.submit = messageService.submit;

@@ -8,7 +8,7 @@ app.service('messageService', ['$http', function($http){
       console.log('in self.submit', chat);
       $http({
         method: 'POST',
-        url: '/Message',
+        url: '/message',
         data: chat
       })
       .then(function(response){
@@ -22,7 +22,7 @@ app.service('messageService', ['$http', function($http){
       console.log('in self.display');
       $http({
         method: 'GET',
-        url: '/Message',
+        url: '/message',
       })
       .then(function(response){
         console.log('success in GET', response.data);

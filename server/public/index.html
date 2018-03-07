@@ -9,19 +9,16 @@
   <script src="scripts/controllers/messageController.js" charset="utf-8"></script>
   <script src="scripts/services/messageServices.js" charset="utf-8"></script>
 </head>
-<body>
+<body ng-app="myApp">
   <h1>Message Board Application</h1>
   <div ng-controller="ChatController as cc">
     <section>
-      <input type="text" placeholder="name" ng-model="cc.newMessage.name">
-      <input type="text" placeholder="message" ng-model="cc.newMessage.message">
-      <button ng-click="cc.submitButton(cc.newMessage)">Send!</button>
-    </section>
-  </div>
-  <article>
-    <ul>
-      <div ng-repeat="message in cc.messages.allMessages">
-        <b>{{message.name}}</b>: {{message.message}}
+      <input ng-model="cc.chat.name" type="text" placeholder="name">
+    <input ng-model="cc.chat.message" type="text" placeholder="message">
+    <button ng-click="cc.submit(cc.chat)">Submit</button>
+    <div>
+      <ul>
+        <li ng-repeat="message in cc.log.messages"><b>{{message.name}}</b>: {{message.message}}</li>
     </div>
     </ul>
   </article>
